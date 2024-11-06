@@ -9,7 +9,9 @@ public class Main {
         Vectores vectores = new Vectores();
 //        vectores.vector();
 //        vectores.ej1();
-        vectores.ej2();
+//        vectores.ej2();
+//        vectores.ej5();
+        vectores.vectores2();
 
     }
 
