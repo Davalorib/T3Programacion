@@ -70,13 +70,16 @@ public class Practicas {
             }
 
             if (valido2) { //si no pongo esta verificacion previa se me clona el primero si el segundo lo hago mal
-                if (n == 1) {
-                    samurais1int = samuraisint.clone();
-                } else if (n == 2) {
-                    samurais2int = samuraisint.clone();
+                switch (n) {
+                    case 1:
+                        samurais1int = samuraisint.clone();
+                    case 2:
+                        samurais2int = samuraisint.clone();
                 }
             }
         }
+
+
 
         System.out.println(Arrays.toString(samurais1int));
         System.out.println(Arrays.toString(samurais2int));
