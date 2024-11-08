@@ -10,9 +10,10 @@ public class Practicas {
 
         Scanner ent = new Scanner(System.in);
 
-        int samuraisint[] = new int[7];
-        int samurais1int[] = new int[7];
-        int samurais2int[] = new int[7];
+        boolean valido;
+        int[] samuraisint = new int[7];
+        int[] samurais1int = new int[7];
+        int[] samurais2int = new int[7];
         String[] samuraissplit;
 
         System.out.println("\n Introduce la potencia de tus 7 samurais separadas mediante una ',' : ");
@@ -29,21 +30,25 @@ public class Practicas {
                 continue;
             }
 
+            valido = true;
+
             for (int i = 0; i < samuraissplit.length; i++) {
                 try {
                     samuraisint[i] = Integer.parseInt(samuraissplit[i]);
                 } catch (NumberFormatException er) {
                     System.out.println("ERROR... Introduce nuevamente 7 potencias pero con número válidos");
                     n--;
+                    valido = false;
                     break;
                 }
             }
 
-            if (n==1){
-                samurais1int = samuraisint.clone();
-            }
-            if (n==2){
-                samurais2int = samuraisint.clone();
+            if (valido) { //si no pongo esta verificacion previa se me clona el primero si el segundo lo hago mal
+                if (n == 1) {
+                    samurais1int = samuraisint.clone();
+                } else if (n == 2) {
+                    samurais2int = samuraisint.clone();
+                }
             }
         }
 
