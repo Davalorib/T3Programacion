@@ -57,15 +57,27 @@ public class Practicas {
             //for para ir convirtiendo los valores a int
             for (int i = 0; i < samuraissplit.length; i++) {
 
-                try { //el try
+                //el try
+                try {
                     samuraisint[i] = Integer.parseInt(samuraissplit[i]); //la conversion
 
-                } catch (NumberFormatException er) { //el catch controlando que se haya introducido un valor válido
+                    //un if para controlar que el valor esté entre 1 y 24
+                    if (samuraisint[i]<1 || samuraisint[i]>24){
+                        System.out.println("> ERROR... Tu valor tiene que estar entre 1 y 24");
+                        n--; //reiniciamos el for principal
+                        valido = false; //cerramos el paso a las siguientes operaciones
+                        break; //salimos del for
+                    }
+                    //
+
+                //el catch controlando que se haya introducido un valor válido
+                } catch (NumberFormatException er) {
                     System.out.println("> ERROR... Introduce nuevamente 7 potencias pero con número válidos");
                     n--; //reiniciamos el for principal
                     valido = false; //cerramos el paso a las siguientes operaciones
                     break; //salimos del for
                 }
+                //
             }
             //
 
@@ -155,7 +167,6 @@ public class Practicas {
                     break; //paramos las peleas porque ya sabemos el ganador
                 }
                 //
-
             }
             //
 
