@@ -156,5 +156,117 @@ public class Vectores {
 
     }
 
+    public void navidad(){
 
+        Scanner ent = new Scanner(System.in);
+
+        String resultado = "";
+        final String palabra = "NAVIDAD";
+
+        System.out.println("dame el vector");
+        String vecveces = ent.nextLine();
+
+        String cantidades[] = vecveces.split(" ");
+        String letras[] = palabra.split("");
+
+        for (int i=0; i< letras.length; i++){
+
+            for (int j=0 ; i<=Integer.parseInt(cantidades[i]) ; j++){
+
+                resultado += letras[i];
+
+            }
+
+        }
+
+        System.out.println(resultado);
+
+    }
+
+    public void prueba_buscar(){
+
+        String colores[] = {"amarillo","azul","rojo","naranja"};
+        String color = "negro";
+
+        boolean existe = Arrays.asList(colores).contains(color);
+
+        if (existe){
+            System.out.println("Los negros cuentan ");
+        } else {
+            System.out.println("Los negros no cuentan ");
+        }
+
+    }
+
+    public void ruleta(){
+
+        Scanner ent = new Scanner(System.in);
+        Random random = new Random();
+
+        String colores[] = {"rojo","negro"};
+        Integer numeros[] = new Integer[37];
+
+        for (int i=0; i< numeros.length; i++){
+            numeros[i] = i;
+        }
+
+        String pares[] = {"par","impar"};
+
+        System.out.println("Número (0-36): ");
+        int numero = ent.nextInt();
+
+        boolean numero_existe = Arrays.asList(numeros).contains(numero);
+        String color = "";
+        String par = "";
+
+        if (!numero_existe){
+
+            System.out.println("ERROR. El número no es válido.");
+            return;
+
+        } else {
+            if (numero!=0){
+                System.out.println("Color (rojo/negro): ");
+                color = ent.next();
+
+                boolean color_existe = Arrays.asList(colores).contains(color);
+
+                if (!color_existe){
+
+                    System.out.println("ERROR. El color no es válido.");
+                    return;
+
+                } else {
+
+                    System.out.println("Introduce la opción par o impar");
+                    par = ent.next();
+
+                    boolean par_existe = Arrays.asList(pares).contains(par);
+
+                    if (!par_existe) {
+
+                        System.out.println("ERROR. La opción par/impar no es válida.");
+                        return;
+
+                    }
+                }
+            }
+
+
+        }
+
+        int num_sorteo = numeros[random.nextInt(37)];
+        String color_sorteo = colores[random.nextInt(2)];
+
+        if (num_sorteo%2==0){
+
+            String pares_sorteo = "par";
+
+        } else {
+
+            String pares_sorteo = "par";
+
+        }
+        //faltan los premios
+    }
 }
