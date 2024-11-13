@@ -255,18 +255,34 @@ public class Vectores {
 
         }
 
+        String pares_sorteo;
+
         int num_sorteo = numeros[random.nextInt(37)];
         String color_sorteo = colores[random.nextInt(2)];
 
         if (num_sorteo%2==0){
 
-            String pares_sorteo = "par";
+            pares_sorteo = "par";
 
         } else {
 
-            String pares_sorteo = "par";
+            pares_sorteo = "par";
 
         }
+
         //faltan los premios
+        if(numero!=0 && num_sorteo==numero && color_sorteo.equals(color) && pares_sorteo.equals((pares))){
+            System.out.println("HAS GANADO");
+        } else if (numero!=0 && color_sorteo.equals(color)){
+            System.out.println("Has acertado el color.");
+        } else if (numero!=0 && pares_sorteo.equals(par)) {
+            System.out.println("Has acertado la opción par/impar");
+        } else if (numero!=0 && numero==num_sorteo) {
+            System.out.println("Has acertado el número");
+        } else if (numero==0 && num_sorteo==0){
+            System.out.println("HAS GANADO Y LOS DEMÁS PARGUELAS PIERDEN");
+        } else {
+            System.out.println("Has perdido");
+        }
     }
 }
