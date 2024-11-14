@@ -285,4 +285,30 @@ public class Vectores {
             System.out.println("Has perdido");
         }
     }
+
+    public void ordenar(){
+
+        int[] nums = {4,3,10,34,21};
+        System.out.println(Arrays.toString(nums));
+
+        Arrays.sort(nums);
+        System.out.println(Arrays.toString(nums));
+
+        int num1 = 20;
+
+        int posicion = Arrays.binarySearch(nums,num1);
+        System.out.println(posicion);
+
+        //el binary hecho con codigo pero solo si esta, si no esta se queda infinito que no me da tiempo a hacer eso
+        int aux;
+        int aux2;
+        int i = 0;
+        do {
+            aux = (i + (nums.length-1)) / 2;
+            aux2 = nums[aux];
+            i = aux+1;
+        }while(aux2!=num1);
+        System.out.println(aux);
+        //
+    }
 }

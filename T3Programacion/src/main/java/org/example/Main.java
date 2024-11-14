@@ -11,7 +11,8 @@ public class Main {
 //        vectores.ej5();
 //        vectores.vectores2();
 //        vectores.navidad();
-        vectores.prueba_buscar();
+//        vectores.prueba_buscar();
+        vectores.ordenar();
 
 //        Practicas practicas = new Practicas();
 //        practicas.prac1();
