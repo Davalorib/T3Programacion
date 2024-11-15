@@ -311,4 +311,14 @@ public class Vectores {
         System.out.println(aux);
         //
     }
+
+    public void duplicados_distinct(){
+
+        int[] original = {3,3,5,10,16,25,25};
+        System.out.println(Arrays.toString(original));
+        int[] limpio = Arrays.stream(original).distinct().toArray();
+        System.out.println(Arrays.toString(limpio));
+
+    }
+
 }
