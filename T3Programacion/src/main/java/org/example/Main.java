@@ -4,7 +4,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Vectores vectores = new Vectores();
+//        Vectores vectores = new Vectores();
 //        vectores.vector();
 //        vectores.ej1();
 //        vectores.ej2();
@@ -12,10 +12,12 @@ public class Main {
 //        vectores.vectores2();
 //        vectores.navidad();
 //        vectores.prueba_buscar();
-        vectores.ordenar();
+//        vectores.ordenar();
 
-//        Practicas practicas = new Practicas();
+
+        Practicas practicas = new Practicas();
 //        practicas.prac1();
+        practicas.prac2();
 
     }
 

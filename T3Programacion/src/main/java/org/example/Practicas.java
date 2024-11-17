@@ -1,5 +1,6 @@
 package org.example;
 
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -62,7 +63,7 @@ public class Practicas {
                     samuraisint[i] = Integer.parseInt(samuraissplit[i]); //la conversion
 
                     //un if para controlar que el valor esté entre 1 y 24
-                    if (samuraisint[i]<1 || samuraisint[i]>24){
+                    if (samuraisint[i] < 1 || samuraisint[i] > 24) {
                         System.out.println("> ERROR... Tu valor tiene que estar entre 1 y 24");
                         n--; //reiniciamos el for principal
                         valido = false; //cerramos el paso a las siguientes operaciones
@@ -70,7 +71,7 @@ public class Practicas {
                     }
                     //
 
-                //el catch controlando que se haya introducido un valor válido
+                    //el catch controlando que se haya introducido un valor válido
                 } catch (NumberFormatException er) {
                     System.out.println("> ERROR... Introduce nuevamente 7 potencias pero con número válidos");
                     n--; //reiniciamos el for principal
@@ -103,7 +104,7 @@ public class Practicas {
             if (valido2) {
 
                 //for para mover el vector a la derecha las veces que nos haya salido en el random
-                for (int i = 0; i < numrandom-1; i++) {
+                for (int i = 0; i < numrandom - 1; i++) {
                     aux = samuraisint[0]; //el aux coge la primera posición para más tarde moverla al final
                     for (int l = 0; l < samuraisint.length - 1; l++) { //for para copiar el valor de la derecha del vector
                         samuraisint[l] = samuraisint[l + 1];
@@ -127,10 +128,10 @@ public class Practicas {
 
         System.out.println("> Equipo completado.\n");
         System.out.println("> ¡Empieza la batalla!");
-        System.out.println("> La batalla inicia con el Samurai "+ numrandom + ".");
+        System.out.println("> La batalla inicia con el Samurai " + numrandom + ".");
 
         //este for vuelve a mover el vector a la derecha las veces que nos haya salido en el random pero de otro vector distinto que va del 1 al 7 para que nos diga los samurais que están luchando
-        for (int i = 0; i < numrandom-1; i++) {
+        for (int i = 0; i < numrandom - 1; i++) {
             aux2 = samuraiscont[0];
             for (int l = 0; l < samuraiscont.length - 1; l++) {
                 samuraiscont[l] = samuraiscont[l + 1];
@@ -145,7 +146,7 @@ public class Practicas {
 
             //si es mayor que 0 ha ganado el equipo 1
             if (samuraisResta[i] > 0) {
-                System.out.println("> Samurai "+ samuraiscont[i] +". Gana el Samurai del equipo 1. "+ samurais1int[i] +" vs "+ samurais2int[i]);
+                System.out.println("> Samurai " + samuraiscont[i] + ". Gana el Samurai del equipo 1. " + samurais1int[i] + " vs " + samurais2int[i]);
                 samurais2int[i] = 0; //la potencia de esa posicion del equipo perdedor la igualamos a 0
 
             }
@@ -153,7 +154,7 @@ public class Practicas {
 
             //si es menor que 0 ha ganado el equipo 2
             else if (samuraisResta[i] < 0) {
-                System.out.println("> Samurai "+ samuraiscont[i] +". Gana el Samurai del equipo 2. "+ samurais1int[i] +" vs "+ samurais2int[i]);
+                System.out.println("> Samurai " + samuraiscont[i] + ". Gana el Samurai del equipo 2. " + samurais1int[i] + " vs " + samurais2int[i]);
                 samurais1int[i] = 0; //la potencia de esa posicion del equipo perdedor la igualamos a 0
             }
             //
@@ -163,7 +164,7 @@ public class Practicas {
                 samurais1cont++; //sumamos 1 a un contador
 
                 //si ese contador supera la mitad de numeros que tiene el vector
-                if (samurais1cont > samurais1int.length / 2){
+                if (samurais1cont > samurais1int.length / 2) {
                     break; //paramos las peleas porque ya sabemos el ganador
                 }
                 //
@@ -173,7 +174,7 @@ public class Practicas {
             //si ha perdido la ronda el equipo 2 lo mismo que con el equipo 1
             else if (samurais2int[i] == 0) {
                 samurais2cont++;
-                if (samurais2cont > samurais1int.length / 2){
+                if (samurais2cont > samurais1int.length / 2) {
                     break;
                 }
             }
@@ -185,16 +186,189 @@ public class Practicas {
 
         //si es mayor que 0 ha ganado el equipo 1
         if (restafinal > 0) {
-            System.out.println("> ¡GANA EL EQUIPO 2! El equipo 1 ha tenido "+ samurais1cont +" bajas ");
+            System.out.println("> ¡GANA EL EQUIPO 2! El equipo 1 ha tenido " + samurais1cont + " bajas ");
 
         }
         //
 
         //si es menor que 0 ha ganado el equipo 2
         else if (restafinal < 0) {
-            System.out.println("> ¡GANA EL EQUIPO 1! El equipo 2 ha tenido "+ samurais2cont +" bajas ");
+            System.out.println("> ¡GANA EL EQUIPO 1! El equipo 2 ha tenido " + samurais2cont + " bajas ");
         }
         //
     }
+
+    public void prac2() {
+         //el scanner y el random
+        Scanner ent = new Scanner(System.in);
+        Random random = new Random();
+        //
+         //todas mis variables, vectores y booleanos
+        boolean formato;
+        boolean repetir = true;
+        boolean complementofinal = true;
+        String juego;
+        String[] nums;
+        int[] numsint = new int[7];
+        int[] numsrandom = new int[6];
+        int complement = random.nextInt(48)+1;
+        int reintegro = random.nextInt(9);
+        int aciertos = 0;
+        //
+         //texto de entrada al programa y pedida de numeros
+        System.out.println("\n> BIENVENIDO A LA PRIMITIVA <");
+        System.out.println(" ---------------------------");
+        System.out.println("> Vas a elegir tus 6 números (1-49) separados entre sí con '-' y el reintegro separado con '/'");
+        System.out.println("> Introduce tus números de la suerte con el formato adecuado: ");
+        juego = ent.next();
+        //
+         //el .match este para asegurarnos de que se mete en el formato correcto
+        formato = juego.matches("\\d{1,2}-\\d{1,2}-\\d{1,2}-\\d{1,2}-\\d{1,2}-\\d{1,2}/\\d");
+        //
+         //si el formato no es válido cerramos el programa con un return porque no hay nada después
+        if (!formato) {
+            System.out.println("> FORMATO NO VÁLIDO <");
+            return;
+
+        }
+        //
+         //spliteamos guiones y barras
+        nums = juego.split("[-/]");
+        //
+         //un for para ir haciendo una secuencia de acciones y no repetir for's
+        for (int n = 0; n < 3; n++) {
+             //el for que hace toodo el programa
+            for (int i = 0; i < nums.length - 1; i++) {
+                 //switch con la n
+                switch (n){
+                     //si n=0
+                    case 0:
+                         //pasamos todos menos el reintegro a int
+                        numsint[i] = Integer.parseInt(nums[i]);
+                        //
+                         // si hay alguno que no está en nuestro rango cerramos el programa
+                        if (numsint[i] < 1 || numsint[i] > 49) {
+                            System.out.println("> Tus valores tiene que estar entre 1 y 49 <");
+                            return;
+                        }
+                        //
+                        break;
+                    //
+                     //si n=1
+                    case 1:
+                         //ordenamos los números y cambiamos la i para que deje de dar vueltas
+                        Arrays.sort(numsint);
+                        i = 6;
+                        //
+                         //comprobamos si hay números repetidos y si es así cerramos el programa
+                        for (int l = 0; l < numsint.length; l++) {
+                            if (l!=numsint.length-1 && numsint[l]==numsint[l+1]){
+                                System.out.println("> No puedes repetir números <");
+                                return;
+                            }
+                        }
+                        //
+                        break;
+                    //
+                     //si n=2
+                    case 2:
+                        //creamos un vector de números random
+                        numsrandom[i] = random.nextInt(48)+1;
+                        //
+                         //como nuestro vector es de 7 y solo hemos llenado 6, tenemos un 0 al principio, así que lo pongo al final
+                        int aux;
+                        aux = numsint[i];
+                        numsint[i] = numsint[i + 1];
+                        numsint[i + 1] = aux;
+                        //
+                        break;
+                    //
+                }
+                //
+            }
+            //
+        }
+        //
+         //meto en el último spot el reintegro de manera muy cutre para que no se ordene
+        numsint[6] = Integer.parseInt(nums[6]);
+        //
+         //ordeno el vector de números random
+        Arrays.sort(numsrandom);
+        //
+         //un bucle que busca repetidos y los recalcula en caso de haber hasta que sean todos distintos, lo mismo con el complementario
+        while(repetir){
+            repetir = false;
+            for (int i = 0; i < numsrandom.length; i++) {
+                if (i!=numsrandom.length-1 && numsrandom[i]==numsrandom[i+1]){
+                    numsrandom[i] = random.nextInt(48)+1;
+                    repetir = true;
+                } else if (complement == numsrandom[i]) {
+                    complement = random.nextInt(48) + 1;
+                    repetir = true;
+                    break;
+                }
+            }
+            Arrays.sort(numsrandom);
+        }
+        //
+         //un for que compara nuestros números con los del random y el complementario y nos suma los aciertos
+        for (int i = 0; i < numsrandom.length; i++) {
+            for (int j = 0; j < numsrandom.length; j++) {
+                if (numsint[j] == numsrandom[i]){
+                    aciertos++;
+                }
+            }
+            if (complement == numsint[i]){
+                complementofinal = false;
+                break;
+            }
+        }
+        //
+         //toodo lo que se muestra por pantalla
+        System.out.println("> Tus números:");
+        System.out.println(Arrays.toString(numsint));
+        System.out.println("\n> SORTEO <");
+        System.out.println("----------");
+        System.out.println(Arrays.toString(numsrandom));
+        System.out.println("> El complementario: "+complement);
+        System.out.println("> El reintegro: "+reintegro);
+        System.out.println("\n> RESULTADOS <");
+        System.out.println("--------------");
+        System.out.println("> "+ aciertos +" "+ (aciertos == 1 ? "acierto" : "aciertos"));
+        //
+         //un último switch con la variable aciertos que clasifica nuestros aciertos en distintas categorías
+        switch (aciertos){
+            case 0,1,2:
+                if (numsint[6] == reintegro){
+                    System.out.println("> Reintegro");
+                } else {
+                    System.out.println("> No premiado");
+                }
+                break;
+            case 3:
+                System.out.println("> 5ª Categoría");
+                break;
+            case 4:
+                System.out.println("> 4ª Categoría");
+                break;
+            case 5:
+                if (!complementofinal){
+                    System.out.println("> 2ª Categoría");
+                } else {
+                    System.out.println("> 3ª Categoría");
+                }
+                break;
+            case 6:
+                if (numsint[6] == reintegro){
+                    System.out.println("> Categoría Especial");
+                } else {
+                    System.out.println("> 1ª Categoría");
+                }
+                break;
+        }
+        //
+    }
+    //
+
 
 }
