@@ -13,11 +13,18 @@ public class Main {
 //        vectores.navidad();
 //        vectores.prueba_buscar();
 //        vectores.ordenar();
+//        vectores.primos();
 
+        Matrices matrices = new Matrices();
+//        matrices.matrices1();
+//        matrices.matrices2();
+//        matrices.buscar();
+//        matrices.bat1();
+        matrices.calentar();
 
-        Practicas practicas = new Practicas();
+//        Practicas practicas = new Practicas();
 //        practicas.prac1();
-        practicas.prac2();
+//        practicas.prac2();
 
     }
 

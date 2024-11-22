@@ -321,4 +321,25 @@ public class Vectores {
 
     }
 
+    public void primos(){
+
+        Scanner ent = new Scanner(System.in);
+        System.out.println("Introduce m:");
+        int m = ent.nextInt();
+
+        antonio:
+        for (int i=2; i<=m; i++){
+
+            for (int j=i-1; j>=2; j--){
+
+                if (i%j==0){
+                    continue antonio;
+                }
+
+            }
+            System.out.print(i +" ");
+        }
+
+    }
+
 }
