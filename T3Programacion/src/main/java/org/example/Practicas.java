@@ -1,6 +1,7 @@
 package org.example;
 
 import java.util.Arrays;
+import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -367,6 +368,87 @@ public class Practicas {
                 break;
         }
         //
+    }
+
+    public void prac3() {
+
+        Scanner ent = new Scanner(System.in);
+
+        int a,b;
+        int cuenta = 0;
+        String palabra;
+        String[] filas;
+        String[] palabrica;
+        String[][] matriz;
+        boolean formato;
+
+        try {
+            System.out.println("Introduce las filas que quieres: ");
+            a = ent.nextInt();
+            System.out.println("Introduce las columnas que quieres: ");
+            b = ent.nextInt();
+        } catch (InputMismatchException er){
+            System.out.println("Introduce un valor válido.");
+            return;
+        }
+
+        matriz = new String[a][b];
+
+        for (int i = 0; i < matriz.length; i++) {
+
+            System.out.println("Introduce fila "+ (i+1) +": ");
+            String entrada = ent.next();
+
+//            try {
+                //el .match este para asegurarnos de que se mete en el formato correcto
+                formato = entrada.matches("[a-zA-Z]+");
+                //
+
+                if (!formato){
+                    System.out.println("Utiliza un formato válido");
+                    return;
+                }
+
+//            } catch (InputMismatchException er){
+//                System.out.println("Utiliza un formato válido");
+//            }
+
+            filas = entrada.split("");
+
+            for (int j = 0; j < matriz[i].length; j++) {
+                matriz[i][j]=filas[j];
+            }
+        }
+
+        System.out.println();
+        for(String[] i : matriz){
+            for (String j : i){
+                System.out.print(j + " ");
+            }
+            System.out.print("\n");
+        }
+
+        System.out.println("\nIntroduce la palabra a buscar: ");
+        palabra = ent.next();
+        formato = palabra.matches("[a-zA-Z]+");
+
+        if (!formato){
+            System.out.println("Utiliza un formato válido");
+            return;
+        }
+
+        palabrica = palabra.split("");
+        
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz[i].length; j++) {
+
+                if (matriz[i][j].equals(palabrica[cuenta])) {
+                    cuenta++;
+                }
+            }
+        }
+        System.out.println("Esa palabra no está, no inventes.");
+
     }
 
 

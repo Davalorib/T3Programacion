@@ -9,22 +9,24 @@ public class Main {
 //        vectores.ej1();
 //        vectores.ej2();
 //        vectores.ej5();
+
 //        vectores.vectores2();
 //        vectores.navidad();
 //        vectores.prueba_buscar();
 //        vectores.ordenar();
 //        vectores.primos();
 
-        Matrices matrices = new Matrices();
+//        Matrices matrices = new Matrices();
 //        matrices.matrices1();
 //        matrices.matrices2();
 //        matrices.buscar();
 //        matrices.bat1();
-        matrices.calentar();
+//        matrices.calentar();
 
-//        Practicas practicas = new Practicas();
+        Practicas practicas = new Practicas();
 //        practicas.prac1();
 //        practicas.prac2();
+        practicas.prac3();
 
     }
 
