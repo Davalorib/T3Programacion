@@ -374,50 +374,55 @@ public class Practicas {
 
         Scanner ent = new Scanner(System.in);
 
-        int a,b;
+        int gazpacho,manchego;
         int cuenta = 0;
         String palabra;
+        String entrada;
         String[] filas;
         String[] palabrica;
+        String eureka;
         String[][] matriz;
         boolean formato;
 
         try {
             System.out.println("Introduce las filas que quieres: ");
-            a = ent.nextInt();
+            gazpacho = ent.nextInt();
+            if (gazpacho <= 0) {
+                System.err.println("Pero introduce un número válido.");
+                return;
+            }
             System.out.println("Introduce las columnas que quieres: ");
-            b = ent.nextInt();
+            manchego = ent.nextInt();
+            if (manchego <= 0) {
+                System.err.println("Pero introduce un número válido.");
+                return;
+            }
         } catch (InputMismatchException er){
-            System.out.println("Introduce un valor válido.");
+            System.err.println("Introduce un valor válido.");
             return;
         }
 
-        matriz = new String[a][b];
+        matriz = new String[gazpacho][manchego];
 
         for (int i = 0; i < matriz.length; i++) {
 
-            System.out.println("Introduce fila "+ (i+1) +": ");
-            String entrada = ent.next();
 
-//            try {
-                //el .match este para asegurarnos de que se mete en el formato correcto
-                formato = entrada.matches("[a-zA-Z]+");
-                //
+            System.out.println("Introduce fila " + (i + 1) + ": ");
+            entrada = ent.next();
 
-                if (!formato){
-                    System.out.println("Utiliza un formato válido");
-                    return;
-                }
+            formato = entrada.matches("[a-zA-Z]+");
 
-//            } catch (InputMismatchException er){
-//                System.out.println("Utiliza un formato válido");
-//            }
+            if (!formato || entrada.length()!=manchego) {
+                System.err.println("Utiliza unos datos válidos ("+ manchego +" letras)");
+                return;
+            }
 
             filas = entrada.split("");
 
             for (int j = 0; j < matriz[i].length; j++) {
                 matriz[i][j]=filas[j];
             }
+
         }
 
         System.out.println();
@@ -433,7 +438,7 @@ public class Practicas {
         formato = palabra.matches("[a-zA-Z]+");
 
         if (!formato){
-            System.out.println("Utiliza un formato válido");
+            System.err.println("Utiliza un formato válido");
             return;
         }
 
@@ -442,13 +447,59 @@ public class Practicas {
         for (int i = 0; i < matriz.length; i++) {
             for (int j = 0; j < matriz[i].length; j++) {
 
-                if (matriz[i][j].equals(palabrica[cuenta])) {
-                    cuenta++;
+                if (matriz[i][j].equalsIgnoreCase(palabrica[cuenta])) {
+                    int contador = j;
+                    eureka = "";
+                    for (int k = 0; k < palabrica.length; k++) {
+                        eureka += matriz[i][contador];
+                        contador++;
+                        if(eureka.equalsIgnoreCase(palabra)){
+                            System.out.println("Tu palabra está en horizontal, empezando en la "+ (i+1) +"ª fila, "+ (j+1) +"ª columna");
+                            return;
+                        } else if (contador >= matriz.length){
+                            break;
+                        }
+                    }
+                    contador = j;
+                    eureka = "";
+                    for (int k = 0; k < palabrica.length; k++) {
+                        eureka += matriz[i][contador];
+                        contador--;
+                        if(eureka.equalsIgnoreCase(palabra)){
+                            System.out.println("Tu palabra está en horizontal pero invertida, empezando en la "+ (i+1) +"ª fila, "+ (j+1) +"ª columna");
+                            return;
+                        } else if (contador<0){
+                            break;
+                        }
+                    }
+                    contador = i;
+                    eureka = "";
+                    for (int k = 0; k < palabrica.length; k++) {
+                        eureka += matriz[contador][j];
+                        contador++;
+                        if(eureka.equalsIgnoreCase(palabra)){
+                            System.out.println("Tu palabra está en vertical, empezando en la "+ (i+1) +"ª fila, "+ (j+1) +"ª columna");
+                            return;
+                        } else if (contador >= matriz.length){
+                            break;
+                        }
+                    }
+                    contador = i;
+                    eureka = "";
+                    for (int k = 0; k < palabrica.length; k++) {
+                        eureka += matriz[contador][j];
+                        contador--;
+                        if(eureka.equalsIgnoreCase(palabra)){
+                            System.out.println("Tu palabra está en vertical pero invertida, empezando en la "+ (i+1) +"ª fila, "+ (j+1) +"ª columna");
+                            return;
+                        } else if (contador<0){
+                            break;
+                        }
+                    }
                 }
             }
         }
-        System.out.println("Esa palabra no está, no inventes.");
-
+        System.err.println("Esa palabra no está, no inventes.");
     }
 
 
