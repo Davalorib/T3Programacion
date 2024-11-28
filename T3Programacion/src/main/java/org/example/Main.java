@@ -28,6 +28,10 @@ public class Main {
 //        practicas.prac2();
         practicas.prac3();
 
+//        Olimpiadas olimpiadas = new Olimpiadas();
+//        olimpiadas.hyperpar();
+//        olimpiadas.saltosMario();
+
     }
 
 

@@ -374,6 +374,7 @@ public class Practicas {
 
         Scanner ent = new Scanner(System.in);
 
+        //todas mis variables, vectores, matrices y booleanos
         int gazpacho,manchego;
         int cuenta = 0;
         String palabra;
@@ -383,88 +384,128 @@ public class Practicas {
         String eureka;
         String[][] matriz;
         boolean formato;
-
+        //
+        
+         //el try
         try {
             System.out.println("Introduce las filas que quieres: ");
-            gazpacho = ent.nextInt();
-            if (gazpacho <= 0) {
-                System.err.println("Pero introduce un número válido.");
-                return;
-            }
-            System.out.println("Introduce las columnas que quieres: ");
-            manchego = ent.nextInt();
-            if (manchego <= 0) {
-                System.err.println("Pero introduce un número válido.");
-                return;
-            }
-        } catch (InputMismatchException er){
-            System.err.println("Introduce un valor válido.");
-            return;
-        }
+            gazpacho = ent.nextInt(); //pedimos el número de filas
 
+            //si el número de filas es menor o igual que 0
+            if (gazpacho <= 0) {
+                System.err.println("Pero introduce un número válido."); //muestra por pantalla error
+                return; //volvemos al main (en mi caso acaba el programa ya que no hay más en dicho main)
+            }
+            //
+
+            System.out.println("Introduce las columnas que quieres: ");
+            manchego = ent.nextInt(); //pedimos el número de columnas
+
+            //si el número de columnas es menor o igual que 0
+            if (manchego <= 0) {
+                System.err.println("Pero introduce un número válido."); //muestra por pantalla error
+                return; //volvemos al main
+            }
+            //
+        }
+        //
+         //el catch
+        catch (InputMismatchException er){
+            System.err.println("Introduce un valor válido.");
+            return; //volvemos al main
+        }
+        //
+
+         //nuestra matriz en string y con el numero de filas y columnas previamente recogidos
         matriz = new String[gazpacho][manchego];
 
+        //el for que va desde 0 hasta el tamanyo de nuestra matriz
         for (int i = 0; i < matriz.length; i++) {
+            System.out.println("Introduce fila " + (i + 1) + ": "); //nos pide los valores de la fila por la que vaya el for
+            entrada = ent.next(); //introducimos los valores
 
-
-            System.out.println("Introduce fila " + (i + 1) + ": ");
-            entrada = ent.next();
-
+             //el .matches para asegurarnos que se introduce en el formato que nosotros queremos
             formato = entrada.matches("[a-zA-Z]+");
-
+            //
+             //si el formato no es el deseado
             if (!formato || entrada.length()!=manchego) {
-                System.err.println("Utiliza unos datos válidos ("+ manchego +" letras)");
-                return;
+                System.err.println("Utiliza unos datos válidos ("+ manchego +" letras)"); //nos muestra un error
+                return; //volvemos al main
             }
+            //
 
+             //el .split para separar los caracteres y guardarlos en el vector filas
             filas = entrada.split("");
+            //
 
+             //un for para ir introduciendo el vector filas en la matriz
             for (int j = 0; j < matriz[i].length; j++) {
-                matriz[i][j]=filas[j];
+                matriz[i][j]=filas[j]; //igualamos la fila de la matriz al vector
             }
-
+            //
         }
+        //
 
         System.out.println();
+
+        //recorremos la matriz para mostrarla por pantalla
         for(String[] i : matriz){
             for (String j : i){
                 System.out.print(j + " ");
             }
             System.out.print("\n");
         }
+        //
 
         System.out.println("\nIntroduce la palabra a buscar: ");
-        palabra = ent.next();
+        palabra = ent.next(); //pedimos la palabra a buscar
+
+        //otra vez el .matches con su respectivo if
         formato = palabra.matches("[a-zA-Z]+");
 
         if (!formato){
             System.err.println("Utiliza un formato válido");
             return;
         }
+        //
 
-        palabrica = palabra.split("");
-        
+        palabrica = palabra.split(""); //spliteamos y guardamos en un vector la palabra a buscar
+
+        //2 for para recorrer la matriz
         for (int i = 0; i < matriz.length; i++) {
             for (int j = 0; j < matriz[i].length; j++) {
 
+                //si el caracter de la matriz en el que nos encontramos es igual al primer caracter de nuestra palabra a buscar (ignorando mayusculas y minusculas)
                 if (matriz[i][j].equalsIgnoreCase(palabrica[cuenta])) {
-                    int contador = j;
-                    eureka = "";
+                    int contador = j; //un contador para ir recorriendo cosas sin afectar al for principal
+                    eureka = ""; //pues aqui voy a ir guardando el conjunto de letras para luego compararlo a la palabra a buscar
+
+                     //el for para las palabras en horizontal
                     for (int k = 0; k < palabrica.length; k++) {
-                        eureka += matriz[i][contador];
-                        contador++;
+                        eureka += matriz[i][contador]; //vamos guardando en eureka las letras de la posicion en la matriz
+                        contador++; //sumamos el contador
+
+                        //si la palabra coincide con nuestra palabra a buscar (ignorando mayusculas y minusculas)
                         if(eureka.equalsIgnoreCase(palabra)){
-                            System.out.println("Tu palabra está en horizontal, empezando en la "+ (i+1) +"ª fila, "+ (j+1) +"ª columna");
-                            return;
-                        } else if (contador >= matriz.length){
+                            System.out.println("Tu palabra está en horizontal, empezando en la "+ (i+1) +"ª fila, "+ (j+1) +"ª columna"); //te dice la posicion de tu palabra
+                            return; //y acabamos el programa
+                        }
+                        //
+                         //si el contador se sale de la matriz que deje de buscar porque no va a estar ahi
+                        else if (contador >= matriz.length){
                             break;
                         }
+                        //
                     }
-                    contador = j;
-                    eureka = "";
+                    //
+                    contador = j; //reiniciamos contador
+                    eureka = ""; //reiniciamos eureka
+
+                    //el for para las palabras en horizontal invertidas
                     for (int k = 0; k < palabrica.length; k++) {
                         eureka += matriz[i][contador];
                         contador--;
+
                         if(eureka.equalsIgnoreCase(palabra)){
                             System.out.println("Tu palabra está en horizontal pero invertida, empezando en la "+ (i+1) +"ª fila, "+ (j+1) +"ª columna");
                             return;
@@ -472,11 +513,15 @@ public class Practicas {
                             break;
                         }
                     }
-                    contador = i;
-                    eureka = "";
+                    //
+                    contador = i; //reiniciamos contador
+                    eureka = ""; //reiniciamos eureka
+
+                    //el for para las palabras en vertical
                     for (int k = 0; k < palabrica.length; k++) {
                         eureka += matriz[contador][j];
                         contador++;
+
                         if(eureka.equalsIgnoreCase(palabra)){
                             System.out.println("Tu palabra está en vertical, empezando en la "+ (i+1) +"ª fila, "+ (j+1) +"ª columna");
                             return;
@@ -484,11 +529,15 @@ public class Practicas {
                             break;
                         }
                     }
-                    contador = i;
-                    eureka = "";
+                    //
+                    contador = i; //reiniciamos contador
+                    eureka = ""; //reiniciamos eureka
+
+                    //el for para las palabras en horizontal pero invertidas
                     for (int k = 0; k < palabrica.length; k++) {
                         eureka += matriz[contador][j];
                         contador--;
+
                         if(eureka.equalsIgnoreCase(palabra)){
                             System.out.println("Tu palabra está en vertical pero invertida, empezando en la "+ (i+1) +"ª fila, "+ (j+1) +"ª columna");
                             return;
@@ -496,10 +545,14 @@ public class Practicas {
                             break;
                         }
                     }
+                    //
                 }
+                //
             }
+            //
         }
-        System.err.println("Esa palabra no está, no inventes.");
+        //
+        System.err.println("Esa palabra no está, no inventes."); //si llega aquí es porque no está la palabra
     }
 
 
